@@ -1,0 +1,82 @@
+server:
+  port: 10001
+
+spring:
+  application:
+    name: cloud-config-center
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/potato521-john/SpringCloud-Config.git
+#          search-paths:
+#            - SpringCloud-Config
+          username: jamesgosling_w6@163.com
+          password: 926442624474wwww
+          ignoreLocalSshSettings: true
+          force-pull: true
+          private-key: |
+                          -----BEGIN OPENSSH PRIVATE KEY-----
+                          b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn
+                          NhAAAAAwEAAQAAAYEAwUs8TLFxs661CQIiGUls5ngt/P0s3kvYmmnETaNcJDnI2MU6ZTiK
+                          xGK03qrFsLH8g+77cj+7O9jkMIx/2PkDklW/sG64sFabHucAbG44/x3qaeXo1ApPT5ChGf
+                          UYS4NbRBAxXnZ2/2eItQBZpqVHYHzk/YwB/V2/i1cYIn0Ycno13ebItXv/ss0hBqXPTE4s
+                          7ePiJTxsDmZEJY3RPZJRvLgYIOUPmQexmWugpmLzTl044qLPPUDFToHbewkAHtP5xu2wiC
+                          BDLGm7AqOxBNYj0FXA0uKQL1/HKwM1rM+pK7oN53b7V7SJbO7LzmWQab3pZH3MVYwD2WT/
+                          +R/76OvpIdaMoRRWTXTu9IR0JO71FfC+r4zUv2LKBQhJScULA1Z8WLfLwqcRv2LN9sNLHn
+                          cn5/7+Ia+6Hqq7OJF7ebTXI9vZuWsPBaBCjIB0wQsm//JS1pzo5olWzucR2YxNdOKa1B13
+                          pTlE48G9w2OCex7pqRTrIlOIQeTw1fIBZgtiVTg3AAAFiL786XS+/Ol0AAAAB3NzaC1yc2
+                          EAAAGBAMFLPEyxcbOutQkCIhlJbOZ4Lfz9LN5L2JppxE2jXCQ5yNjFOmU4isRitN6qxbCx
+                          /IPu+3I/uzvY5DCMf9j5A5JVv7BuuLBWmx7nAGxuOP8d6mnl6NQKT0+QoRn1GEuDW0QQMV
+                          52dv9niLUAWaalR2B85P2MAf1dv4tXGCJ9GHJ6Nd3myLV7/7LNIQalz0xOLO3j4iU8bA5m
+                          RCWN0T2SUby4GCDlD5kHsZlroKZi805dOOKizz1AxU6B23sJAB7T+cbtsIggQyxpuwKjsQ
+                          TWI9BVwNLikC9fxysDNazPqSu6Ded2+1e0iWzuy85lkGm96WR9zFWMA9lk//kf++jr6SHW
+                          jKEUVk107vSEdCTu9RXwvq+M1L9iygUISUnFCwNWfFi3y8KnEb9izfbDSx53J+f+/iGvuh
+                          6quziRe3m01yPb2blrDwWgQoyAdMELJv/yUtac6OaJVs7nEdmMTXTimtQdd6U5ROPBvcNj
+                          gnse6akU6yJTiEHk8NXyAWYLYlU4NwAAAAMBAAEAAAGACEywtCJSXYK85zweNrO+Z071uo
+                          0sZgcfr9GmyiafiDaq9xPQ5BO/cZtDZOQ0RNf/nbKfPVKbOYCgm60MuEZI7vmbl3nJmFi/
+                          pF4K2J0K+XlRXWavzpr6uNHe+PxbJLLpMkz3sbSoe2L4rbzsHImwPOZf9rsSQszJsrP0p1
+                          ZzvEafFX4ZVCGU4xqHtn9cHUymBTjptuuXQC8H8gza1Sf5Nn85GgB74PhBmfLTHRHWnKDI
+                          FoMjHuAvGKXexLOoO6qiVb/xJJxIu5dmI42wQz1WhY0TxNIU3+FWMHkP1Hs8eCKF01rdcB
+                          uDG4pEoabQTYFWqO5T39aJLtdDlpxRkmDS9xqGL6MQ7syy9cUZ5NsmqAxmXCbuXF3GsFxv
+                          rJoyTQKqAKjQkBOXXAD9mWHficgWo82C5Xw6pveBsJBymxEG05NxEFeTdttVqEp9N4Z7me
+                          Ce8LQgj/2d+o4aeQKr+8mvrvVnd+dQ72mJw6c5Iky8z19gDAT3rKKtcmRuwBzN4pCBAAAA
+                          wQDc4X9L48LZl6POkkHd5cqFRcICAnNUotdx7E+e6q+ThoaFUI4fMhYTL6ELQ1MMyNlszu
+                          jxFTtjCqlzhqVg5YOaQ8pLb4eJpXRJPU8atONOdUKcNC30b+vnASNn/kaGHAawy09Ao0RS
+                          SMoVgyXFD/wkBUnlz3n1f58JeHZZHpZ5JieyULv/QDwhOzZ6+h0p0TUk0ltXcPYw14KFBE
+                          IkvS9dZEdtmhbWG1ryykOUnQBoHZVFqHBdrAdVcBbKwgDQokAAAADBAPeO3lOIIFq+aVnC
+                          CbQsrXAYAXZpQIOLRxP/OgxpZEPzRavJOwquV/src952sG2qMOoYMotAGkqMqlFOG+7kiL
+                          E38gKSF5rDdzPQdGxN8073oZyzpxgrcUog8y9E+9dIV7HFb0+6Tbh5tFKla5AsOH7hUaag
+                          pipKHhXdBKO7UZDPeBGSq0UDDrRr4khS+Mn8heyKz1jx0pjc9/gNJkWcN6hRQupikWua8t
+                          Wqo9RMYCtgqaLwKmiRGx6WwUnfa877oQAAAMEAx+Km2gld9pexdZaGqX0Wxc3pZn6djFV+
+                          ptJ3Ndz+jIfU+wZJlSu+51ueLR4vd3hSkCQGwvs3fPk6X/WFHxwtruRavbCW9Gjkg77Drr
+                          Vt7USVp5BaS1H/MxGLgGcM4QFQkCECqvNd/cgFl8rSThloO8wZAzwwOsbO+5LhIydh2575
+                          Djk0CvU34Yc+aRlrfol3pHg9ND1F+Ct8ZR9bucRX1OjqMcLK39GIxffAfeVbz+1wrVQcYk
+                          1G+N5Untm5FWTXAAAAEkJXQExBUFRPUC1PSDJTNU85Mw==
+                          -----END OPENSSH PRIVATE KEY-----
+          skip-ssl-validation: true
+          search-paths:
+            - SpringCloud-Config
+      label: master
+  rabbitmq:
+    port: 5672
+    username: admin
+    password: wkj123456
+    host: localhost
+    virtual-host: yhtmq
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+    prefer-ip-address: true
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:9004/eureka
+    fetch-registry: true
+    register-with-eureka: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh,health

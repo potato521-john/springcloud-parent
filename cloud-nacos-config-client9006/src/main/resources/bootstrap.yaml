@@ -1,0 +1,17 @@
+server:
+  port: 9006
+
+spring:
+  application:
+    name: cloud-nacos-config
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+      config:
+        file-extension: yaml #文件格式
+        server-addr: 127.0.0.1:8848
+        namespace: 285c4b3e-3f2e-44e3-984d-8c31e2faa739
+        group: DEV_GROUP
+
+# 拉取配置的原则: ${spring.application.name}-${spring.profile.active}.${spring.cloud.nacos.config.file-extension}

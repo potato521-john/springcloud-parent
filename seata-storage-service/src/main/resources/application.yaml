@@ -1,0 +1,37 @@
+server:
+  port: 10003
+
+
+spring:
+  application:
+    name: seata-storage-service
+  #nacos注册中心
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    # seata设置
+    alibaba:
+      seata:
+        tx-service-group: yht_tx_group
+  # 数据源
+  datasource:
+    username: root
+    url: jdbc:mysql://localhost:3306/seata_storage?characterEncoding=utf8&serverTimezone=UTC
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+#mybatis配置
+mybatis:
+  mapper-locations: classpath*:/mappers/*.xml
+  configuration:
+    #  开启驼峰设置,还可以有其他设置比如别名等
+    map-underscore-to-camel-case: true
+
+#日志配置
+logging:
+  level:
+    io:
+      seata: info
+
+

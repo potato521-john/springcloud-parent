@@ -1,0 +1,16 @@
+server:
+  port: 8902
+
+#解决http://localhost:8901/actuator/hystrix.stream无法访问的问题
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      base-path: "/actuator"
+hystrix:
+  dashboard:
+    enable-ignore-connection-close-header: true
+  metrics:
+    enabled: true
+    polling-interval-ms: 10000

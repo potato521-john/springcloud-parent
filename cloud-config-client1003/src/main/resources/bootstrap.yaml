@@ -1,0 +1,35 @@
+server:
+  port: 10003
+
+spring:
+  application:
+    name: config-client
+  cloud:
+    config:
+      label: master
+      name: application
+      profile: test
+      uri: http://localhost:10001
+  rabbitmq:
+    virtual-host: yhtmq
+    host: localhost
+    password: wkj123456
+    port: 5672
+    username: admin
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+    prefer-ip-address: true
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:9004/eureka
+    fetch-registry: true
+    register-with-eureka: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh,health

@@ -1,0 +1,78 @@
+server:
+  port: 9000
+spring:
+  application:
+    name: eureka-server-peer1
+  profiles: peer1
+eureka:
+  instance:
+    hostname: peer1
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://peer2:9002/eureka/,http://peer3:9003/eureka/
+---
+server:
+  port: 9002
+
+spring:
+  application:
+    name: eureka-server-peer2
+  profiles: peer2
+eureka:
+  instance:
+    hostname: peer2
+    prefer-ip-address: true
+    #eureka服务端在收到最后一次心跳后等待的时间上线,单位是秒,默认是90秒
+    lease-expiration-duration-in-seconds: 2000
+    #eureka客户端向服务端发送心跳的时间间隔.单位是秒,默认是30秒
+    lease-renewal-interval-in-seconds: 1
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://peer1:9000/eureka/,http://peer3:9003/eureka/
+  server:
+    enable-self-preservation: false
+---
+server:
+  port: 9003
+
+spring:
+  application:
+    name: eureka-server
+  profiles: peer3
+eureka:
+  instance:
+    hostname: peer3
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://peer1:9000/eureka/,http://peer2:9002/eureka/
+---
+server:
+  port: 9004
+spring:
+  application:
+    #单机版
+    name: eureka-server-peer4
+  profiles: peer4
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:9004/eureka/
+  server:
+    peer-node-connect-timeout-ms: 2000
+---
+spring:
+  profiles:
+    active: peer4

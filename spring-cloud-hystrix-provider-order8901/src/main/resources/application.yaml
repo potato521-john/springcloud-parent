@@ -1,0 +1,111 @@
+server:
+  port: 8901
+spring:
+  application:
+    name: cloud-hystrix-openfeign-order
+  profiles: peer1
+  zipkin:
+    base-url: http://localhost:9411
+  sleuth:
+    sampler: #介于0到1之间,1表示全部采样
+      probability: 1
+
+hystrix:
+  command:
+    #portal_sort: #这个是具体的熔断的服务,一般针对大的访问量接口进行熔断
+    default: #这是全局的熔断参数
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 2000 #设置熔断器判定超时的时间，超过此时间的请求会执行降级逻辑，默认1s
+      circuitBreaker:
+        requestVolumeThreshold: 20 #设置熔断阈值，在熔断统计窗口期内，错误请求（超时、异常）次数达到阈值就会触发熔断，执行降级逻辑，默认20
+        sleepWindowInMilliseconds: 10000  #设置熔断器多久进入半开状态，然后再次尝试确定熔断器是否应再次关闭，默认5s
+        errorThresholdPercentage: 50  #设置在熔断统计窗口期内，错误请求达到百分之多少触发熔断，默认50
+      metrics:
+        rollingStats:
+          timeInMilliseconds: 5000 #熔断度量窗口期时间， 默认10s
+feign:
+  hystrix:
+    enabled: true
+  client:
+    config:
+      # calc-service-provider:  这一级可以写具体的微服务名称或者default，default代表全局配置，影响所有微服务的调用
+      default:
+        ConnectTimeout: 10000
+        ReadTimeout: 10000
+        loggerlevel: basic
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+    prefer-ip-address: true
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:9004/eureka
+    fetch-registry: true
+    register-with-eureka: true
+
+#解决http://localhost:8901/actuator/hystrix.stream无法访问的问题
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+---
+server:
+  port: 9002
+spring:
+  application:
+    name: cloud-hystrix-openfeign-order
+  profiles: peer2
+
+hystrix:
+  command:
+    #portal_sort: #这个是具体的熔断的服务,一般针对大的访问量接口进行熔断
+    default: #这是全局的熔断参数
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 2000 #设置熔断器判定超时的时间，超过此时间的请求会执行降级逻辑，默认1s
+      circuitBreaker:
+        requestVolumeThreshold: 20 #设置熔断阈值，在熔断统计窗口期内，错误请求（超时、异常）次数达到阈值就会触发熔断，执行降级逻辑，默认20
+        sleepWindowInMilliseconds: 10000  #设置熔断器多久进入半开状态，然后再次尝试确定熔断器是否应再次关闭，默认5s
+        errorThresholdPercentage: 50  #设置在熔断统计窗口期内，错误请求达到百分之多少触发熔断，默认50
+      metrics:
+        rollingStats:
+          timeInMilliseconds: 5000 #熔断度量窗口期时间， 默认10s
+feign:
+  hystrix:
+    enabled: true
+  client:
+    config:
+      # calc-service-provider:  这一级可以写具体的微服务名称或者default，default代表全局配置，影响所有微服务的调用
+      default:
+        ConnectTimeout: 10000
+        ReadTimeout: 10000
+        loggerlevel: basic
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+    prefer-ip-address: true
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:9004/eureka
+    fetch-registry: true
+    register-with-eureka: true
+
+#解决http://localhost:8901/actuator/hystrix.stream无法访问的问题
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+---
+spring:
+   profiles:
+     active: peer1

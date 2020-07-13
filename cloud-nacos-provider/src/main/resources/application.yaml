@@ -1,0 +1,39 @@
+server:
+  port: 9001
+
+spring:
+  application:
+    name: cloud-nacos-provider
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+  profiles: peer2
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+---
+server:
+  port: 9002
+
+spring:
+  application:
+    name: cloud-nacos-provider
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        weight: 1.2F
+  profiles: peer1
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+---
+spring:
+     profiles:
+       active: peer2

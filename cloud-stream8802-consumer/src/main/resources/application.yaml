@@ -1,0 +1,35 @@
+server:
+  port: 8802
+
+spring:
+  application:
+    name: cloud-stream-consumer
+  cloud:
+    stream:
+      binders: #在此处配置要绑定的rabbitmq的服务信息
+        yhtRabbit: #表示定义的名字,用于binding整合
+          type: rabbit #消息组件类型
+          environment: #设置rabbitmq的相关环境
+            spring:
+              rabbitmq:
+                host: localhost
+                username: admin
+                port: 5672
+                password: wkj123456
+                virtual-host: yhtmq
+      bindings:  # 服务配合整理
+        input: #这个名字[是一个通道的名字
+          destination: yhtExchange #表示使用的exchange名称
+          content-type: application/json #设置消息的类型,文本设置时"text/plain"
+          binder: yhtRabbit #设置绑定的消息服务的具体设置
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+    prefer-ip-address: true
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:9004/eureka
+    fetch-registry: true
+    register-with-eureka: true
