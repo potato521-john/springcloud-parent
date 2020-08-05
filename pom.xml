@@ -12,7 +12,7 @@
         <module>cloud-consumer-order80</module>
         <module>cloud-api-common</module>
         <module>cloud-eureka-server</module>
-        <module>cloud-zk-server-provider-payment</module>
+        <module>cloud-zk-server</module>
         <module>cloud-zk-consumer-order8091</module>
         <module>cloud-consul-provider-payment8092</module>
         <module>cloud-consul-order8093</module>
@@ -60,7 +60,6 @@
 
     <dependencyManagement>
         <dependencies>
-
             <!--springboot的版本和依赖-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
