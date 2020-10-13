@@ -50,7 +50,7 @@
         <springcloud.version>Hoxton.SR1</springcloud.version>
         <springcloud.alibaba.version>2.1.0.RELEASE</springcloud.alibaba.version>
         <lombok.version>1.18.12</lombok.version>
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
         <mysql.version>8.0.15</mysql.version>
         <druid.version>1.1.10</druid.version>
         <mybatis.version>2.1.2</mybatis.version>
